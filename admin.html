@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel 💼</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container column">
+    <h1 style="text-align:center;">🛡️ Admin Panel — Her Answers</h1>
+    
+    <table id="answers-table" class="summary-box" style="margin-top: 20px;">
+      <tbody>
+        <tr><td><strong>Date Type:</strong></td><td id="admin-type">—</td></tr>
+        <tr><td><strong>Location:</strong></td><td id="admin-location">—</td></tr>
+        <tr><td><strong>Movie:</strong></td><td id="admin-movie">—</td></tr>
+        <tr><td><strong>Date:</strong></td><td id="admin-date">—</td></tr>
+        <tr><td><strong>Time:</strong></td><td id="admin-time">—</td></tr>
+      </tbody>
+    </table>
+
+    <button class="final-button" onclick="clearAnswers()">🧹 Clear All Responses</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

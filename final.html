@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Perfect Date 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/audio/lofi.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button id="music-toggle">🔊</button>
+
+  <div class="background"></div>
+  <div class="hearts" id="hearts-container"></div>
+  <div class="overlay-glow"></div>
+
+  <div class="container">
+    <div class="content-box fade-in final-message">
+      <h1>💖 You just planned our perfect first date 💖</h1>
+      <p>Thank you for going on this little journey with me.</p>
+      <p class="iloveu">I love you 💌</p>
+
+      <div class="summary-box" id="summary">
+        <h3>Your Choices 💬</h3>
+        <p><strong>Date Type:</strong> <span id="type"></span></p>
+        <p><strong>Location:</strong> <span id="location"></span></p>
+        <p><strong>Movie (if any):</strong> <span id="movie"></span></p>
+        <p><strong>Date:</strong> <span id="date"></span></p>
+        <p><strong>Time:</strong> <span id="time"></span></p>
+      </div>
+
+      <button class="final-button" onclick="alert('Kiss Sent 💋')">Send Me a Kiss 😘</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

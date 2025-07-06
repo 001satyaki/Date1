@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pick a Ghat 🌊</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/audio/lofi.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="background"></div>
+
+  <div class="container column">
+    <h2 class="confession-text">Which Ganga ghat would you love to visit? 🌅</h2>
+    <div class="card-container">
+      <div class="card" onclick="selectGhat('Princep Ghat')">
+        <img src="assets/images/ganga/princep.jpg" alt="Princep Ghat">
+        <div class="card-title">Princep Ghat</div>
+      </div>
+      <div class="card" onclick="selectGhat('Babughat')">
+        <img src="assets/images/ganga/babughat.jpg" alt="Babughat">
+        <div class="card-title">Babughat</div>
+      </div>
+      <div class="card" onclick="selectGhat('Outram Ghat')">
+        <img src="assets/images/ganga/outram.jpg" alt="Outram Ghat">
+        <div class="card-title">Outram Ghat</div>
+      </div>
+
+      <!-- ── Your Choice Input ── -->
+      <div class="card">
+        <input type="text" id="custom-ghat" placeholder="Your ghat suggestion…" />
+        <button onclick="selectCustomGhat()">Go</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectGhat(ghatName) {
+      localStorage.setItem('ghat_choice', ghatName);
+      window.location.href = 'date-time.html';
+    }
+
+    function selectCustomGhat() {
+      const v = document.getElementById('custom-ghat').value.trim();
+      if (!v) return alert('Please enter a ghat name!');
+      localStorage.setItem('ghat_choice', v);
+      window.location.href = 'date-time.html';
+    }
+  </script>
+</body>
+</html>

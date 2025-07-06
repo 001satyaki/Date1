@@ -1,0 +1,269 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background: url('assets/images/background4.png') no-repeat center center;
+  background-size: 100%;
+  
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #ffdde1, #fccde2, #e7b8da);
+  filter: blur(30px);
+  z-index: -1;
+  animation: pulse 10s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  flex-direction: column;
+}
+
+.fade-in {
+  animation: fade 0.7s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2, h3, .iloveu {
+  font-family: 'Dancing Script', cursive;
+  color: #e210e2;
+}
+
+.iloveu {
+  font-size: 2rem;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+  margin-top: 10px;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+button, .final-button {
+  background-color: #ff69b4;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(255, 105, 180, 0.2);
+  transition: background 0.3s;
+  margin-top: 15px;
+}
+
+button:hover, .final-button:hover {
+  background-color: #e55fa2;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.3s;
+  width: 280px;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-title {
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #ffeef4;
+  color: #4e004e;
+  text-align: center;
+}
+
+.calendar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+.calendar-form label {
+  font-weight: 600;
+  color: #ce1ace;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.calendar-form input {
+  padding: 10px 14px;
+  border: 2px solid #ffb6d1;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  background-color: #fff0f7;
+  color: #4e004e;
+  transition: 0.3s;
+}
+
+.calendar-form input:focus {
+  border-color: #ff69b4;
+}
+
+.hearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.heart {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: url('assets/images/heart.png') no-repeat center center / contain;
+  animation: floatUp 5s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh) scale(1.6);
+    opacity: 0;
+  }
+}
+
+.content-box {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+.confession-text {
+  color: #ffffff;        /* deep purple, for example */
+  /* or any hex/rgb you prefer */
+  -webkit-text-stroke: 0.5px #000000;
+  font-weight: 1000;      /* optional: make it stand out */
+}
+
+
+.summary-box {
+  background: #f3afff;
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  color: #4e004e;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.overlay-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,192,203,0.3), transparent 70%);
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 10;
+}
+#particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; /* Only top half */
+  z-index: 0;   /* Send it behind other elements */
+  pointer-events: none; /* So it doesn't block buttons */
+}
+
+
+@media (max-width: 600px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .content-box {
+    padding: 20px;
+    margin: 10px;
+  }
+}

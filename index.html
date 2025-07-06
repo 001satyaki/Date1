@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Special Moment 💖</title>
+
+  <!-- Fonts & Styles -->
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Particles + Script -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Audio & Background Elements -->
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/audio/lofi.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="background"></div>
+  <div class="hearts" id="hearts-container"></div>
+  <div class="overlay-glow"></div>
+  <button id="music-toggle">🔊</button>
+
+  <!-- Confession Box -->
+  <div class="container">
+    <div class="content-box fade-in" id="confession-box">
+      <p class="confession-text" id="confession-text">
+        I have something special to confess to you...
+      </p>
+      <button id="next-btn" class="final-button">
+        Continue ➡️
+      </button>
+    </div>
+  </div>
+</body>
+</html>

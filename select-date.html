@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pick Our Date 💕</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="script.js" defer></script>
+
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/audio/lofi.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="background"></div>
+
+  <div class="container column">
+    <h2 class="confession-text">Choose the type of date you’d love to go on 🌸</h2>
+
+    <div class="card-container">
+      <div class="card" onclick="selectDate('Ganga', 'ganga.html')">
+        <img src="assets/images/ganga.jpg" alt="Ganga Shore Date">
+        <div class="card-title">🌊 By the Shore of Ganga</div>
+      </div>
+
+      <div class="card" onclick="selectDate('Cafe', 'cafe.html')">
+        <img src="assets/images/cafe.jpg" alt="Cozy Cafe">
+        <div class="card-title">☕ Cozy Café Date</div>
+      </div>
+
+      <div class="card" onclick="selectDate('Movie', 'movie.html')">
+        <img src="assets/images/movie.jpg" alt="Movie Night">
+        <div class="card-title">🎬 Movie Night</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectDate(choice, redirectTo) {
+      localStorage.setItem('date_type', choice);
+      window.location.href = redirectTo;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pick a Café ☕</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/audio/lofi.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="background"></div>
+  <div class="hearts" id="hearts-container"></div>
+  <div class="overlay-glow"></div>
+  <button id="music-toggle">🔊</button>
+
+  <div class="background"></div>
+
+  <div class="container column">
+    <h2 class="confession-text">Which café would you love to spend our first date in? ☕💬</h2>
+    <div class="card-container">
+      <div class="card" onclick="selectCafe('Marbella Cafe')">
+        <img src="assets/images/cafes/Marbella.jpg" alt="Marbella's Cafe">
+        <div class="card-title">Marbella's Cafe</div>
+      </div>
+      <div class="card" onclick="selectCafe('Sienna Café')">
+        <img src="assets/images/cafes/sienna.jpg" alt="Sienna Café">
+        <div class="card-title">Sienna Café</div>
+      </div>
+      <div class="card" onclick="selectCafe('Roastery Coffee House')">
+        <img src="assets/images/cafes/roastery.jpg" alt="Roastery Coffee House">
+        <div class="card-title">Roastery Coffee House</div>
+      </div>
+      <div class="card" onclick="selectCafe('Blue Tokai Coffee')">
+        <img src="assets/images/cafes/bluetokai.jpg" alt="Blue Tokai">
+        <div class="card-title">Blue Tokai Coffee</div>
+      </div>
+
+      <!-- ── Your Choice Input ── -->
+      <div class="card">
+        <input type="text" id="custom-cafe" placeholder="Your café suggestion…" />
+        <button onclick="selectCustomCafe()">Go</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectCafe(cafeName) {
+      localStorage.setItem('cafe_choice', cafeName);
+      window.location.href = 'date-time.html';
+    }
+
+    function selectCustomCafe() {
+      const v = document.getElementById('custom-cafe').value.trim();
+      if (!v) return alert('Please enter a café name!');
+      localStorage.setItem('cafe_choice', v);
+      window.location.href = 'date-time.html';
+    }
+  </script>
+</body>
+</html>
