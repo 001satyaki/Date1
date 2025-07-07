@@ -20,9 +20,9 @@
   <div class="container column">
     <h2 class="confession-text">Which movie should we watch on our first date? 🍿</h2>
     <div class="card-container">
-      <div class="card" onclick="selectMovie('Kalki 2898 AD')">
-        <img src="assets/images/movies/kalki.jpg" alt="Kalki 2898 AD">
-        <div class="card-title">Kalki 2898 AD</div>
+      <div class="card" onclick="selectMovie('Saiyaara')">
+        <img src="assets/images/movies/kalki.jpg" alt="Saiyaara">
+        <div class="card-title">Saiyaara</div>
       </div>
       <div class="card" onclick="selectMovie('Sitaare Zameen Par')">
         <img src="assets/images/movies/sitaare.jpg" alt="Sitaare">
@@ -37,7 +37,7 @@
         <div class="card-title">Maalik</div>
       </div>
 
-      <!-- ── Your Choice Input ── -->
+      <!-- Your Choice Input -->
       <div class="card">
         <input type="text" id="custom-movie" placeholder="Your movie pick…" />
         <button onclick="selectCustomMovie()">Go</button>
@@ -46,8 +46,17 @@
   </div>
 
   <script>
+    function saveResponse(update) {
+      const old = JSON.parse(localStorage.getItem("responses") || "[]");
+      const current = old.length > 0 ? old[old.length - 1] : {};
+      const updated = { ...current, movie_choice: update.movie_choice };
+      old[old.length - 1] = updated;
+      localStorage.setItem("responses", JSON.stringify(old));
+    }
+
     function selectMovie(movieName) {
       localStorage.setItem('movie_choice', movieName);
+      saveResponse({ movie_choice: movieName });
       window.location.href = 'date-time.html';
     }
 
@@ -55,6 +64,7 @@
       const v = document.getElementById('custom-movie').value.trim();
       if (!v) return alert('Please enter a movie title!');
       localStorage.setItem('movie_choice', v);
+      saveResponse({ movie_choice: v });
       window.location.href = 'date-time.html';
     }
   </script>
