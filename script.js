@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setInterval(createHeart, 300);
     }
 
-    // Save full response to array
+    // Save full response to local array
     const responses = JSON.parse(localStorage.getItem("responses") || "[]");
     const fullResponse = {
       date_type: get("date_type"),
@@ -110,42 +110,51 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     responses.push(fullResponse);
     localStorage.setItem("responses", JSON.stringify(responses));
+
+    // ✅ NEW: Send response to Google Sheets
+    fetch("https://script.google.com/macros/s/AKfycbynxVk5g4HXBP8EsVFo8b0PfPu7cTGQXqDKV3ccCryFlvnJIaLTob0fwriulCWsbM4/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fullResponse)
+    })
+    .then(res => res.text())
+    .then(msg => console.log("✅ Google Sheets response:", msg))
+    .catch(err => console.error("❌ Failed to send to Sheets:", err));
   }
 
-  // === 4) Admin Panel (admin.html) ===
-// === 4) Admin Page Logic (admin.html) ===
-if (window.location.pathname.includes("admin.html")) {
-  const container = document.getElementById("admin-output");
-  const all = JSON.parse(localStorage.getItem("responses") || "[]");
+  // === 4) Admin Page Logic (admin.html) ===
+  if (window.location.pathname.includes("admin.html")) {
+    const container = document.getElementById("admin-output");
+    const all = JSON.parse(localStorage.getItem("responses") || "[]");
 
-  if (!all.length) {
-    container.innerHTML = "<p style='text-align:center;'>No responses found yet 😶</p>";
-    return;
-  }
-
-  all.forEach((entry, i) => {
-    const box = document.createElement("div");
-    box.className = "summary-box";
-
-    let extraInfo = "";
-    if (entry.date_type === "Ganga") {
-      extraInfo += `<p><strong>Ghat:</strong> ${entry.ghat_choice || "—"}</p>`;
-    } else if (entry.date_type === "Cafe") {
-      extraInfo += `<p><strong>Cafe:</strong> ${entry.cafe_choice || "—"}</p>`;
-    } else if (entry.date_type === "Movie") {
-      extraInfo += `<p><strong>Movie:</strong> ${entry.movie_choice || "—"}</p>`;
+    if (!all.length) {
+      container.innerHTML = "<p style='text-align:center;'>No responses found yet 😶</p>";
+      return;
     }
 
-    box.innerHTML = `
-      <h3>Response #${i + 1}</h3>
-      <p><strong>Date Type:</strong> ${entry.date_type || "—"}</p>
-      ${extraInfo}
-      <p><strong>Date:</strong> ${entry.selected_date || "—"}</p>
-      <p><strong>Time:</strong> ${entry.selected_time || "—"}</p>
-    `;
-    container.appendChild(box);
-  });
-}
+    all.forEach((entry, i) => {
+      const box = document.createElement("div");
+      box.className = "summary-box";
+
+      let extraInfo = "";
+      if (entry.date_type === "Ganga") {
+        extraInfo += `<p><strong>Ghat:</strong> ${entry.ghat_choice || "—"}</p>`;
+      } else if (entry.date_type === "Cafe") {
+        extraInfo += `<p><strong>Cafe:</strong> ${entry.cafe_choice || "—"}</p>`;
+      } else if (entry.date_type === "Movie") {
+        extraInfo += `<p><strong>Movie:</strong> ${entry.movie_choice || "—"}</p>`;
+      }
+
+      box.innerHTML = `
+        <h3>Response #${i + 1}</h3>
+        <p><strong>Date Type:</strong> ${entry.date_type || "—"}</p>
+        ${extraInfo}
+        <p><strong>Date:</strong> ${entry.selected_date || "—"}</p>
+        <p><strong>Time:</strong> ${entry.selected_time || "—"}</p>
+      `;
+      container.appendChild(box);
+    });
+  }
 
   // === 5) Music Toggle ===
   const bgMusic = document.getElementById("bg-music");
