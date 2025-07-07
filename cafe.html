@@ -20,8 +20,6 @@
   <div class="overlay-glow"></div>
   <button id="music-toggle">🔊</button>
 
-  <div class="background"></div>
-
   <div class="container column">
     <h2 class="confession-text">Which café would you love to spend our first date in? ☕💬</h2>
     <div class="card-container">
@@ -34,7 +32,7 @@
         <div class="card-title">Sienna Café</div>
       </div>
       <div class="card" onclick="selectCafe('Roastery Coffee House')">
-        <img src="assets/images/cafes/Roastery.jpg" alt="Roastery Coffee House">
+        <img src="assets/images/cafes/roastery.jpg" alt="Roastery Coffee House">
         <div class="card-title">Roastery Coffee House</div>
       </div>
       <div class="card" onclick="selectCafe('Blue Tokai Coffee')">
@@ -42,7 +40,7 @@
         <div class="card-title">Blue Tokai Coffee</div>
       </div>
 
-      <!-- ── Your Choice Input ── -->
+      <!-- Your Choice Input -->
       <div class="card">
         <input type="text" id="custom-cafe" placeholder="Your café suggestion…" />
         <button onclick="selectCustomCafe()">Go</button>
@@ -51,8 +49,17 @@
   </div>
 
   <script>
+    function saveResponse(update) {
+      const old = JSON.parse(localStorage.getItem("responses") || "[]");
+      const current = old.length > 0 ? old[old.length - 1] : {};
+      const updated = { ...current, cafe_choice: update.cafe_choice };
+      old[old.length - 1] = updated;
+      localStorage.setItem("responses", JSON.stringify(old));
+    }
+
     function selectCafe(cafeName) {
       localStorage.setItem('cafe_choice', cafeName);
+      saveResponse({ cafe_choice: cafeName });
       window.location.href = 'date-time.html';
     }
 
@@ -60,6 +67,7 @@
       const v = document.getElementById('custom-cafe').value.trim();
       if (!v) return alert('Please enter a café name!');
       localStorage.setItem('cafe_choice', v);
+      saveResponse({ cafe_choice: v });
       window.location.href = 'date-time.html';
     }
   </script>
