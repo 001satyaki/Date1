@@ -9,20 +9,52 @@
 <body>
   <div class="container column">
     <h1 style="text-align:center;">🛡️ Admin Panel — Her Answers</h1>
-    
-    <table id="answers-table" class="summary-box" style="margin-top: 20px;">
-      <tbody>
-        <tr><td><strong>Date Type:</strong></td><td id="admin-type">—</td></tr>
-        <tr><td><strong>Location:</strong></td><td id="admin-location">—</td></tr>
-        <tr><td><strong>Movie:</strong></td><td id="admin-movie">—</td></tr>
-        <tr><td><strong>Date:</strong></td><td id="admin-date">—</td></tr>
-        <tr><td><strong>Time:</strong></td><td id="admin-time">—</td></tr>
-      </tbody>
-    </table>
+
+    <div id="admin-output"></div>
 
     <button class="final-button" onclick="clearAnswers()">🧹 Clear All Responses</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("admin-output");
+      const all = JSON.parse(localStorage.getItem("responses") || "[]");
+
+      if (!all.length) {
+        container.innerHTML = "<p style='text-align:center;'>No responses found yet 😶</p>";
+        return;
+      }
+
+      all.forEach((entry, i) => {
+        const box = document.createElement("div");
+        box.className = "summary-box";
+
+        let extraInfo = "";
+        if (entry.date_type === "Ganga") {
+          extraInfo = `<p><strong>Ghat:</strong> ${entry.ghat_choice || "—"}</p>`;
+        } else if (entry.date_type === "Cafe") {
+          extraInfo = `<p><strong>Cafe:</strong> ${entry.cafe_choice || "—"}</p>`;
+        } else if (entry.date_type === "Movie") {
+          extraInfo = `<p><strong>Movie:</strong> ${entry.movie_choice || "—"}</p>`;
+        }
+
+        box.innerHTML = `
+          <h3>Response #${i + 1}</h3>
+          <p><strong>Date Type:</strong> ${entry.date_type || "—"}</p>
+          ${extraInfo}
+          <p><strong>Date:</strong> ${entry.selected_date || "—"}</p>
+          <p><strong>Time:</strong> ${entry.selected_time || "—"}</p>
+        `;
+        container.appendChild(box);
+      });
+    });
+
+    function clearAnswers() {
+      if (confirm("Are you sure you want to clear all saved responses?")) {
+        localStorage.removeItem("responses");
+        location.reload();
+      }
+    }
+  </script>
 </body>
 </html>
