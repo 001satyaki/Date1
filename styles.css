@@ -117,11 +117,13 @@ button:hover, .final-button:hover {
 
 .card img {
   width: 100%;
-  height: auto;
-  max-height: 200px;
+  height: 200px; /* or 180px, choose based on your design */
   object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   display: block;
 }
+
 
 .card-title {
   padding: 15px;
@@ -206,7 +208,7 @@ button:hover, .final-button:hover {
 
 .confession-text {
   color: #ffffff;
-  -webkit-text-stroke: 0.5px #000000;
+  -webkit-text-stroke: 0.1px #000000;
   font-weight: 1000;
   font-size: 1.3rem;
   line-height: 1.6;
