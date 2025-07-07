@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
   <script src="script.js" defer></script>
-
 </head>
 <body>
   <div id="particles-js"></div>
@@ -41,8 +40,16 @@
   </div>
 
   <script>
+    function saveResponse(newData) {
+      const previous = JSON.parse(localStorage.getItem("responses") || "[]");
+      previous.push(newData);
+      localStorage.setItem("responses", JSON.stringify(previous));
+    }
+
     function selectDate(choice, redirectTo) {
-      localStorage.setItem('date_type', choice);
+      // Save only the type for now
+      saveResponse({ date_type: choice });
+      localStorage.setItem("date_type", choice); // also store individually if needed elsewhere
       window.location.href = redirectTo;
     }
   </script>
