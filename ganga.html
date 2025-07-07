@@ -33,7 +33,7 @@
         <div class="card-title">Outram Ghat</div>
       </div>
 
-      <!-- ── Your Choice Input ── -->
+      <!-- Your Choice Input -->
       <div class="card">
         <input type="text" id="custom-ghat" placeholder="Your ghat suggestion…" />
         <button onclick="selectCustomGhat()">Go</button>
@@ -42,15 +42,25 @@
   </div>
 
   <script>
+    function saveResponse(update) {
+      const old = JSON.parse(localStorage.getItem("responses") || "[]");
+      const current = old.length > 0 ? old[old.length - 1] : {};
+      const updated = { ...current, ghat_choice: update.ghat_choice };
+      old[old.length - 1] = updated;
+      localStorage.setItem("responses", JSON.stringify(old));
+    }
+
     function selectGhat(ghatName) {
       localStorage.setItem('ghat_choice', ghatName);
+      saveResponse({ ghat_choice: ghatName });
       window.location.href = 'date-time.html';
     }
 
     function selectCustomGhat() {
-      const v = document.getElementById('custom-ghat').value.trim();
-      if (!v) return alert('Please enter a ghat name!');
-      localStorage.setItem('ghat_choice', v);
+      const val = document.getElementById('custom-ghat').value.trim();
+      if (!val) return alert('Please enter a ghat name!');
+      localStorage.setItem('ghat_choice', val);
+      saveResponse({ ghat_choice: val });
       window.location.href = 'date-time.html';
     }
   </script>
