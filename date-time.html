@@ -32,6 +32,14 @@
   </div>
 
   <script>
+    function saveResponse(update) {
+      const old = JSON.parse(localStorage.getItem("responses") || "[]");
+      const current = old.length > 0 ? old[old.length - 1] : {};
+      const updated = { ...current, ...update };
+      old[old.length - 1] = updated;
+      localStorage.setItem("responses", JSON.stringify(old));
+    }
+
     function submitDateTime(event) {
       event.preventDefault();
 
@@ -42,6 +50,11 @@
 
       localStorage.setItem('selected_date', date);
       localStorage.setItem('selected_time', time);
+
+      saveResponse({
+        selected_date: date,
+        selected_time: time
+      });
 
       window.location.href = 'final.html';
     }
